@@ -1,28 +1,37 @@
-from database import Base
-from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy.sql import func 
-from datetime import datetime 
+from pydantic import BaseModel, ConfigDict
+from datetime import datetime, date 
 
 
-
-class Patient(Base):
-    __tablename__ = "patient"
-
-    id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column()  # Ф.И.О. пациента
-    date_birth: Mapped[datetime] = mapped_column(server_default=func.now())  # дата рождения
-    card_number: Mapped[str] = mapped_column()  # номер медицинской карты
-    rating: Mapped[float] = mapped_column()  # райтинг пациента
-    positive: Mapped[str] = mapped_column()  # позитивные стороны
-    negativity: Mapped[str] = mapped_column()  # негатив
-    attention: Mapped[str] = mapped_column()  # обрати внимание
-    created_at: Mapped[datetime] = mapped_column(server_default=func.now())  # дата создания
-    updated_at: Mapped[datetime] = mapped_column(
-        server_default=func.now(), onupdate=func.now()
-    )  # дата обновления
-
-    def __repr__(self):
-        return f"{self.name} {self.date_birth} {self.card_number} {self.rating} {self.positive} {self.negativity} {self.attention}"
+class PatientCreateSchema(BaseModel):
+    name: str
+    date_birth: date 
+    card_number: str 
+    rating: float 
+    positive: str | None = None
+    negativity: str |None = None 
+    attention: str | None = None 
 
 
-    
+class PatientReadSchema(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: int
+    name: str
+    date_birth: date 
+    card_number: str 
+    rating: float 
+    positive: str | None = None
+    negativity: str |None = None 
+    attention: str | None = None 
+    created_at: datetime
+    updated_at: datetime
+
+
+class PatientUpdateSchema(BaseModel):
+    name: str | None = None
+    date_birth: date | None = None
+    card_number: str | None = None
+    rating: float | None = None
+    positive: str | None = None
+    negativity: str |None = None 
+    attention: str | None = None 
+

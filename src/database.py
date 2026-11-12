@@ -1,11 +1,12 @@
-from typing import AsyncGenerator
+from collections.abc import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-
-SQLALCHEMY_DATABASE_URI = "postgresql+asyncpg://postgres:12345@localhost:5432/SpecialPatient"
+SQLALCHEMY_DATABASE_URI = (
+    "postgresql+asyncpg://postgres:12345@localhost:5432/SpecialPatient"
+)
 engine = create_async_engine(SQLALCHEMY_DATABASE_URI)
 async_session_maker = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
