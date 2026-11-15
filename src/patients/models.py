@@ -1,6 +1,6 @@
 from datetime import date, datetime
 
-from sqlalchemy import CheckConstraint, Date, DateTime, Float, String, Text
+from sqlalchemy import CheckConstraint, Date, DateTime, Float, String, Text, text
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.sql import func
 
@@ -15,9 +15,16 @@ class Patient(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
 
-    name: Mapped[str] = mapped_column(
-        String(255), nullable=False, index=True
-    )  # Ф.И.О. пациента
+    last_name: Mapped[str] = mapped_column(
+        String(100), nullable=False, index=True
+    )  # фамилия
+    first_name: Mapped[str] = mapped_column(
+        String(100), nullable=False, index=True
+    )  # имя
+    middle_name: Mapped[str | None] = mapped_column(
+        String(100), nullable=True
+    )  # отчество
+
     date_birth: Mapped[date] = mapped_column(Date, nullable=False)  # дата рождения
 
     card_number: Mapped[str] = mapped_column(  # номер медицинской карты
@@ -25,7 +32,7 @@ class Patient(Base):
     )
 
     rating: Mapped[float] = mapped_column(  # рейтинг пациента
-        Float, nullable=False, default=0.0, server_default="0"
+        Float, nullable=False, default=0.0, server_default=text("0")
     )
 
     positive: Mapped[str | None] = mapped_column(
@@ -47,4 +54,10 @@ class Patient(Base):
     )
 
     def __repr__(self) -> str:
-        return f"<Patient id={self.id} name={self.name!r} card_number={self.card_number!r}>"
+        return (
+            f"<Patient id={self.id} "
+            f"last_name={self.last_name!r} "
+            f"first_name={self.first_name!r} "
+            f"middle_name={self.middle_name!r} "
+            f"card_number={self.card_number!r}>"
+        )

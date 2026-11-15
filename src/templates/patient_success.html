@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пациент добавлен — МедРейтинг</title>
+<link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">Мед<span>Рейтинг</span></div>
+    <nav class="nav-links">
+      <a href="/reviews" class="active">Отзывы</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-head" style="padding:88px 0 24px">
+    <div class="container">
+      <div class="success-card">
+        <div class="success-icon">✓</div>
+        <h1>Пациент успешно добавлен</h1>
+        <p class="page-sub">Запись сохранена в базе данных. Вы можете добавить ещё одного пациента или перейти к списку.</p>
+        <div class="form-actions" style="justify-content:center;margin-top:24px">
+          <a href="{{ url_for('add_review') }}" class="btn btn-primary">Добавить ещё</a>
+          <a href="/reviews" class="btn btn-ghost">К отзывам</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-in">
+    <div>© 2026 МедРейтинг. Все права защищены.</div>
+    <div><a href="#">Политика конфиденциальности</a> · <a href="#">Контакты</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* ===== БАЗОВЫЕ СБРОСЫ И ШРИФТЫ ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f6f9fc 0%, #e9f1f8 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            line-height: 1.5;
+            color: #1e293b;
+        }
+
+        /* ===== КОНТЕЙНЕР ФОРМЫ ===== */
+        form {
+            max-width: 820px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+                0 0 40px rgba(120, 170, 220, 0.2);
+            backdrop-filter: blur(2px);
+            transition: box-shadow 0.3s ease;
+        }
+
+        form:hover {
+            box-shadow: 
+                0 30px 60px -12px rgba(0, 80, 140, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+                0 0 50px rgba(120, 170, 220, 0.3);
+        }
+
+        /* ===== ПРИВЕТСТВИЕ ===== */
+        body > p {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0b4b6b;
+            text-shadow: 0 2px 5px rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.8rem;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 0.6rem 2rem;
+            border-radius: 100px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 12px rgba(0, 40, 70, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            display: inline-block;
+        }
+
+        /* ===== ЗАГОЛОВОК ФОРМЫ ===== */
+        .form-input {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        #form_data_pacient {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0a3e5c;
+            letter-spacing: 0.02em;
+            display: inline-block;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #3b8fc2;
+            background: linear-gradient(90deg, transparent, #d0e6f5, transparent);
+            background-size: 200% 100%;
+            background-position: 0% 100%;
+            transition: background-position 0.4s;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-radius: 4px;
+        }
+
+        .form-input:hover #form_data_pacient {
+            background-position: 100% 100%;
+        }
+
+        /* ===== ГРУППЫ ПОЛЕЙ ===== */
+        .form-name,
+        .form-age,
+        .form-med_history,
+        .form-story_life,
+        .form-symptoms,
+        .form-local_status,
+        .form-diagnosis,
+        .form-med_tactics,
+        .form-med_final {
+            margin-bottom: 1.25rem;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        /* ===== ПОЛЯ ВВОДА ===== */
+        .form-control {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
+            font-family: inherit;
+            color: #0f2b3b;
+            background: #ffffff;
+            border: 1.5px solid #dbe7f0;
+            border-radius: 1rem;
+            outline: none;
+            transition: 
+                border-color 0.25s,
+                box-shadow 0.25s,
+                background 0.25s,
+                transform 0.2s;
+            box-shadow: 0 4px 8px -4px rgba(0, 40, 70, 0.08);
+        }
+
+        .form-control::placeholder {
+            color: #7f9aad;
+            font-weight: 400;
+            opacity: 0.9;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .form-control:hover {
+            border-color: #a0c3db;
+            background: #fefeff;
+        }
+
+        .form-control:focus {
+            border-color: #2a7fb0;
+            background: #ffffff;
+            box-shadow: 
+                0 0 0 4px rgba(59, 143, 194, 0.15),
+                0 8px 16px -8px rgba(20, 90, 140, 0.2);
+            transform: scale(1.005);
+        }
+
+        .form-control:focus::placeholder {
+            color: #a5bccf;
+            transform: translateX(4px);
+        }
+
+        /* ===== КНОПКА ===== */
+        .form-button {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        #form_btn {
+            background: linear-gradient(135deg, #1f6390 0%, #2c7fb8 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 1.15rem;
+            font-family: inherit;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            letter-spacing: 0.03em;
+            box-shadow: 
+                0 12px 24px -8px rgba(25, 85, 130, 0.4),
+                0 2px 6px rgba(0, 0, 0, 0.05);
+            transition: 
+                transform 0.2s cubic-bezier(0.2, 0, 0, 1),
+                box-shadow 0.25s,
+                background 0.2s;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        #form_btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        #form_btn:hover {
+            background: linear-gradient(135deg, #19628f 0%, #2377b0 100%);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 20px 30px -12px rgba(25, 85, 130, 0.5),
+                0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        #form_btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 12px 20px -10px rgba(25, 85, 130, 0.5);
+        }
+
+        #form_btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* ===== ДОПОЛНИТЕЛЬНЫЕ ДЕТАЛИ ===== */
+        /* Декоративные акценты для полей */
+        .form-name::before,
+        .form-age::before,
+        .form-med_history::before,
+        .form-story_life::before,
+        .form-symptoms::before,
+        .form-local_status::before,
+        .form-diagnosis::before,
+        .form-med_tactics::before,
+        .form-med_final::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 0;
+            background: #3b8fc2;
+            border-radius: 4px;
+            transition: height 0.25s ease;
+            opacity: 0.6;
+        }
+
+        .form-name:focus-within::before,
+        .form-age:focus-within::before,
+        .form-med_history:focus-within::before,
+        .form-story_life:focus-within::before,
+        .form-symptoms:focus-within::before,
+        .form-local_status:focus-within::before,
+        .form-diagnosis:focus-within::before,
+        .form-med_tactics:focus-within::before,
+        .form-med_final:focus-within::before {
+            height: 60%;
+            opacity: 1;
+        }
+
+        /* ===== АДАПТИВНОСТЬ ===== */
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.75rem;
+            }
+
+            form {
+                padding: 1.75rem 1.25rem;
+                border-radius: 1.5rem;
+            }
+
+            body > p {
+                font-size: 1.4rem;
+                padding: 0.5rem 1.25rem;
+                margin-bottom: 1.25rem;
+            }
+
+            #form_data_pacient {
+                font-size: 1.1rem;
+            }
+
+            .form-control {
+                padding: 0.9rem 1rem;
+                font-size: 0.95rem;
+                border-radius: 0.85rem;
+            }
+
+            #form_btn {
+                font-size: 1rem;
+                padding: 0.9rem 1.5rem;
+            }
+        }
+
+        /* Плавное появление формы */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        form {
+            animation: fadeInUp 0.6s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+        }
+
+        body > p {
+            animation: fadeInUp 0.5s 0.1s both;
+        }
+
+        /* ===== ДОПОЛНИТЕЛЬНЫЙ ЛЁГКИЙ ГРАДИЕНТ ДЛЯ ФОНА ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(200, 225, 250, 0.4) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(170, 210, 240, 0.3) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Стилизация автозаполнения (для WebKit) */
+        .form-control:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px white inset !important;
+            -webkit-text-fill-color: #0f2b3b !important;
+            border-color: #b8d4e9;
+        }
+    </style>
+</head>
+<body>
+        <p>Hello, Alexandr!</p>
+    <form action="create_pacient" method="post">
+        <div class="form-input">
+            <div id="form_data_pacient">Введите данные пациента</div>
+        </div>
+        <div class="form-name">
+            <input name="last_name" value="" type="text" class="form-control" placeholder="введите фамилию пациента"/>
+        </div>
+        <div class="form-age">
+            <input name="age" value="" type="number" min="0" max="150" class="form-control" placeholder="Введите возраст пациента"/>
+        </div>
+        <div class="form-med_history">
+            <input name="med_history" value="" type="text" class="form-control" placeholder="История заболевания"/>
+        </div>
+        <div class="form-story_life">
+            <input name="story_life" value="" type="text" class="form-control" placeholder="История жизни пациента"/>
+        </div>
+        <div class="form-symptoms">
+            <input name="symptoms" value="" type="text" class="form-control" placeholder="Общее состояние пациента"/>
+        </div>
+        <div class="form-local_status">
+            <input name="local_status" value="" type="text" class="form-control" placeholder="Локальный статус пациента"/>
+        </div>
+        <div class="form-diagnosis">
+            <input name="diagnosis" value="" type="text" class="form-control" placeholder="Диагноз"/>
+        </div>
+        <div class="form-med_tactics">
+            <input name="med_strategy" value="" type="text" class="form-control" placeholder="Лечение"/>
+        </div>
+        <div class="form-med_final">
+            <input name="med_final" value="" type="text" class="form-control" placeholder="Выписной эпикриз"/>
+        </div>
+        <div class="form-button">
+            <button type="submit" id="form_btn">Ввести данные</button>
+        </div>
+    </form>
+</body>
+</html>                                

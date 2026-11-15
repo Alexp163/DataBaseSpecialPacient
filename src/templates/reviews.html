@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МедРейтинг — главная</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+
+    <style>
+        
+    </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">Мед<span>Рейтинг</span></div>
+    <nav class="nav-links">
+      <a href="/reviews" class="active">Отзывы</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-head">
+    <div class="container">
+      <h1>База пациентов</h1>
+      <p class="page-sub">Выберите действие — добавить нового пациента или найти существующего по введённым данным.</p>
+    </div>
+  </section>
+
+  <section class="quick-links" style="padding-bottom:72px">
+    <div class="container">
+      <div class="choice-grid">
+        <a href="{{url_for('add_review')}}" class="card link-card">
+          <div class="step-num">＋</div>
+          <h3>Внесение пациента в базу данных</h3>
+          <p>Заполните карточку пациента: ФИО, дата рождения, номер медкарты и заметки.</p>
+          <span class="link-arrow">Добавить пациента →</span>
+        </a>
+        <a href="/reviews" class="card link-card">
+          <div class="step-num">⌕</div>
+          <h3>Поиск пациента по введённым данным</h3>
+          <p>Найдите запись по фамилии, дате рождения, номеру карты или телефону.</p>
+          <span class="link-arrow">Перейти к поиску →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-in">
+    <div>© 2026 МедРейтинг. Все права защищены.</div>
+    <div><a href="#">Политика конфиденциальности</a> · <a href="#">Контакты</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

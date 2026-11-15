@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>МедРейтинг — рейтинг пациентов частной клиники</title>
+<link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">Мед<span>Рейтинг</span></div>
+    <nav class="nav-links">
+      <a href="#">Врачи</a>
+      <a href="#">Клиники</a>
+      <a href="{{ url_for('reviews')}}">Отзывы</a>
+      <a href="#">О проекте</a>
+    </nav>
+    <a href="#" class="btn btn-primary">Оставить отзыв</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1>Честный рейтинг пациентов <em>частной клиники</em></h1>
+      <p>Реальные отзывы, проверенные пациенты и прозрачные оценки — выберите врача, которому действительно доверяете.</p>
+      <div class="search">
+        <input type="text" placeholder="Врач, специальность или клиника">
+        <button class="btn btn-primary">Найти</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>12 400</b><span>отзывов</span></div>
+        <div class="stat"><b>340</b><span>врачей</span></div>
+        <div class="stat"><b>28</b><span>клиник</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">Как это работает</h2>
+      <p class="section-sub">Три шага до правильного выбора</p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="step-num">1</div>
+          <h3>Найдите врача</h3>
+          <p>Поиск по специальности, клинике или фамилии — с фильтрами по рейтингу и опыту.</p>
+        </div>
+        <div class="card">
+          <div class="step-num">2</div>
+          <h3>Прочитайте отзывы</h3>
+          <p>Только проверенные отзывы реальных пациентов — без накруток и рекламы.</p>
+        </div>
+        <div class="card">
+          <div class="step-num">3</div>
+          <h3>Оставьте свой отзыв</h3>
+          <p>Поделитесь опытом и помогите другим пациентам сделать верный выбор.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="container">
+      <h2 class="section-title">Топ врачей месяца</h2>
+      <p class="section-sub">По оценкам пациентов за последние 30 дней</p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="doctor">
+            <div class="avatar">АК</div>
+            <div>
+              <h3>Анна Ковалёва</h3>
+              <div class="spec">Кардиолог · Клиника «Медиан»</div>
+            </div>
+          </div>
+          <div class="rating"><span class="stars">★★★★★</span><b>4.9</b><span>· 128 отзывов</span></div>
+        </div>
+        <div class="card">
+          <div class="doctor">
+            <div class="avatar">ДС</div>
+            <div>
+              <h3>Дмитрий Соколов</h3>
+              <div class="spec">Невролог · Клиника «Здоровье+»</div>
+            </div>
+          </div>
+          <div class="rating"><span class="stars">★★★★★</span><b>4.8</b><span>· 96 отзывов</span></div>
+        </div>
+        <div class="card">
+          <div class="doctor">
+            <div class="avatar">ЕМ</div>
+            <div>
+              <h3>Елена Морозова</h3>
+              <div class="spec">Педиатр · Клиника «Детство»</div>
+            </div>
+          </div>
+          <div class="rating"><span class="stars">★★★★☆</span><b>4.7</b><span>· 211 отзывов</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="cta">
+        <h2>Лечились в частной клинике?</h2>
+        <p>Поделитесь опытом — это займёт 2 минуты и поможет другим пациентам.</p>
+        <a href="#" class="btn">Оставить отзыв</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-in">
+    <div>© 2026 МедРейтинг. Все права защищены.</div>
+    <div><a href="#">Политика конфиденциальности</a> · <a href="#">Контакты</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
+
